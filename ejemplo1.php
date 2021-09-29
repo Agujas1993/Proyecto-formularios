@@ -16,30 +16,57 @@
         //Procesar los datos del formulario
         if(!isset($_POST['nombre'])) {
             $errores[] = "No he recibido el nombre";
-    
         }
-         if (strlen($_POST['nombre'])<3) {
+         elseif (strlen($_POST['nombre'])<3) {
             $errores[] = 'Campo nombre demasiado corto';
             
         } if (!$_POST['email']) {
             $errores[] = 'No he recibido el email';
            
-        } if (strlen($_POST['email'])<6) {
+        } elseif (strlen($_POST['email'])<6) {
             $errores[] = 'El email no es válido';
            
         } if (!isset($_POST['clave1']) || !isset($_POST['clave2'])) {
             $errores[] = 'No he recibido ambas claves';
           
-        } if (strlen($_POST['clave1'])<5) {
-            $errores[] =  'La clave debe tener al menos 6 caracteres';
-            
-        } if ($_POST['clave1'] !=$_POST['clave2']) {
+        } else { 
+            if(strlen($_POST['clave1'])<5) {
+            $errores[] =  'La clave debe tener al menos 6 caracteres';  
+        } 
+        if ($_POST['clave1'] !=$_POST['clave2']) {
             $errores[] =  'Las claves no son iguales';  
         }
+    }
 
         if ($errores) {
             mostrar_errores($errores);
-            echo '<br><a href="ejemplo1.php">Volver al formulario</a>';
+         ?>
+<form action="<?= $_SERVER['PHP_SELF']?>" method="post">
+<p>
+
+<label for="nombre">Nombre</label>
+<input type="text" name="nombre" value="<?=$_POST['nombre'] ?>" placeholder="Introduce tu nombre">
+</p>
+<p>
+<label for="email">Email</label>
+<input type="email" name="email" value="<?=$_POST['email'] ?>">
+</p>
+<p>
+<label for="clave1">Contraseña</label>
+<input type="password" name="clave1">
+</p>
+<p>
+<label for="clave2">Repetir clave</label>
+<input type="password" name="clave2">
+</p>
+<p>
+<label>
+<input type="submit" value="Enviar">
+</label>
+</p>
+</form>
+
+         <?php
         } else {
             echo 'Todo bien, pasamos a registrar al usuario en la BD';
         }
