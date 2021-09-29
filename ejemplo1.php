@@ -14,18 +14,25 @@
         //Procesar los datos del formulario
         if(!isset($_POST['nombre'])) {
             echo "No he recibido el nombre";
+            echo '<br><a href="ejemplo1.php">Volver al formulario</a>';
         } elseif (strlen($_POST['nombre'])<3) {
             echo 'Campo nombre demasiado corto';
+            echo '<br><a href="ejemplo1.php">Volver al formulario</a>';
         } elseif (!$_POST['email']) {
             echo 'No he recibido el email';
+            echo '<br><a href="ejemplo1.php">Volver al formulario</a>';
         } elseif (strlen($_POST['email'])<6) {
             echo 'El email no es válido';
+            echo '<br><a href="ejemplo1.php">Volver al formulario</a>';
         } elseif (!isset($_POST['clave1']) || !isset($_POST['clave2'])) {
             echo 'No he recibido ambas claves';
+            echo '<br><a href="ejemplo1.php">Volver al formulario</a>';
         } elseif (strlen($_POST['clave1'])<5) {
             echo 'La clave debe tener al menos 6 caracteres';
+            echo '<br><a href="ejemplo1.php">Volver al formulario</a>';
         } elseif ($_POST['clave1'] !=$_POST['clave2']) {
             echo 'Las claves no son iguales';
+            echo '<br><a href="ejemplo1.php">Volver al formulario</a>';
         } else{
             echo 'Todo bien, pasamos a registrar al usuario en la BD';
         }
